@@ -1,0 +1,21 @@
+Command to update database model:
+
+Scaffold-DbContext "Server=RICHMAN\SQLEXPRESS;Database=ClientInformation;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models  -Context "CoreDbContext" -Force
+
+Scaffold-DbContext "Server=RICHMAN\SQLEXPRESS;Database=ClientInformation;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+
+
+optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+
+
+var test = await (from client in _context.TblClient
+                          join gender in _context.TblGender
+                          on client.GenderId equals gender.Id
+                          select client).ToListAsync();
+
+            var setData = _context.TblClient.Include(g => g.TblGender);
+            //select 
+
+            return test;
+            //dbContext.Table1.Where(p => listOfvalues.Any(l => p.Field == l.Field)).ToList();
+            //select tmp).ToListAsync();
